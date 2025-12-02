@@ -795,14 +795,12 @@ export default function App() {
                     </div>
                   </div>
                   <p className="text-sm text-slate-600 leading-relaxed max-w-xl mx-auto">
-                    預約 $1588 服務包含：您的<b>實體列印版祝福圖騰報告</b>{" "}
-                    (如圖中所示)、<b>3ml 專屬調配滾珠精油</b>
-                    、以及療癒師的一對一<b>報告解析服務</b>。
+                    預約 $1588 服務包含：您的生命之花個人祝福圖騰 (5x7相片尺寸, 作品含木相框, 成品樣式依實體為主)、3ml 專屬調配滾珠精油、以及療癒師的一對一30分鐘報告解析服務。
                   </p>
                 </div>
               </div>
               <div className="mt-8 pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-400 print:hidden">
-                <span>© 2024 Soul Geometry Healing.</span>
+                <span>© 2025 Soul Geometry Healing  by Happy Ihana.</span>
                 <span className="font-mono">
                   ID: {Math.random().toString(36).substr(2, 9).toUpperCase()}
                 </span>
