@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 import {
   Sparkles,
   Droplets,
@@ -11,6 +13,7 @@ import {
   Package,
   Info,
   Mail,
+  Download,
 } from "lucide-react";
 
 /**
@@ -424,7 +427,7 @@ export default function App() {
     setView("landing");
   };
 
-  // PDF 下載列印
+  // PDF 下載列印 (桌面端使用)
   const handlePrint = () => {
     const confirmPrint = window.confirm(
       "即將開啟列印視窗。\n請在目的地選擇「另存為 PDF」即可下載報告。\n\n是否繼續？"
@@ -433,6 +436,74 @@ export default function App() {
       setTimeout(() => {
         window.print();
       }, 300);
+    }
+  };
+
+  // 手機PDF下載功能
+  const handleDownloadPDF = async () => {
+    try {
+      // 顯示下載中提示
+      const originalText = event.target.innerHTML;
+      event.target.innerHTML = '<span class="flex items-center justify-center gap-2"><Activity class="animate-spin" size={20} /> 生成PDF中...</span>';
+      event.target.disabled = true;
+
+      // 獲取報告區域
+      const reportElement = document.getElementById('print-area');
+      
+      if (!reportElement) {
+        throw new Error('找不到報告區域');
+      }
+
+      // 使用html2canvas將DOM轉換為canvas
+      const canvas = await html2canvas(reportElement, {
+        scale: 2, // 提高清晰度
+        useCORS: true, // 允許跨域圖片
+        allowTaint: true,
+        logging: false,
+        backgroundColor: '#ffffff'
+      });
+
+      // 獲取canvas的尺寸
+      const imgData = canvas.toDataURL('image/png');
+      const imgWidth = 210; // A4寬度(mm)
+      const pageHeight = 295; // A4高度(mm)
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+
+      // 創建jsPDF實例
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+
+      // 將圖片添加到PDF
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      // 如果內容超過一頁，添加新頁面
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      // 生成檔案名稱
+      const fileName = `靈魂幾何報告_${nickname}_${new Date().toLocaleDateString()}.pdf`;
+      
+      // 下載PDF
+      pdf.save(fileName);
+
+      // 恢復按鈕狀態
+      event.target.innerHTML = originalText;
+      event.target.disabled = false;
+
+      alert('PDF下載完成！');
+    } catch (error) {
+      console.error('PDF下載失敗:', error);
+      alert('PDF下載失敗，請使用列印功能或稍後再試。');
+      
+      // 恢復按鈕狀態
+      event.target.innerHTML = originalText;
+      event.target.disabled = false;
     }
   };
 
@@ -816,14 +887,29 @@ export default function App() {
                 重新檢測
               </button>
               <button
-                onClick={handlePrint}
+                onClick={(e) => {
+                  // 檢測是否為移動設備
+                  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                  
+                  if (isMobile) {
+                    handleDownloadPDF(e);
+                  } else {
+                    handlePrint();
+                  }
+                }}
                 className="flex-1 py-4 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl transition-all flex items-center justify-center gap-2 group border border-slate-700"
               >
-                <Printer
-                  size={20}
-                  className="group-hover:scale-110 transition-transform"
-                />
-                下載報告 (PDF)
+                {/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? (
+                  <>
+                    <Download size={20} className="group-hover:scale-110 transition-transform" />
+                    手機下載PDF
+                  </>
+                ) : (
+                  <>
+                    <Printer size={20} className="group-hover:scale-110 transition-transform" />
+                    下載報告 (PDF)
+                  </>
+                )}
               </button>
               <button
                 onClick={() => setView("booking")}
@@ -836,8 +922,11 @@ export default function App() {
             <div className="text-slate-500 text-sm print:hidden mb-8 flex items-center justify-center gap-2 bg-slate-900/50 p-2 rounded-lg border border-slate-800">
               <Info size={16} className="text-blue-400" />
               <span>
-                點擊「下載報告」後，請在列印視窗的目的地選擇
-                <strong>「另存為 PDF」</strong>即可儲存。
+                {/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? (
+                  <>點擊「手機下載PDF」即可直接下載報告到您的設備。</>
+                ) : (
+                  <>點擊「下載報告」後，請在列印視窗的目的地選擇<strong>「另存為 PDF」</strong>即可儲存。</>
+                )}
               </span>
             </div>
           </div>
