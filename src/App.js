@@ -274,9 +274,7 @@ const FlowerOfLifeSVG = ({
   return (
     <svg
       viewBox="-100 -100 200 200"
-      className={`w-full h-full ${
-        animate ? "animate-[spin_60s_linear_infinite]" : ""
-      }`}
+      className={`w-full h-full ${animate ? "animate-[spin_60s_linear_infinite]" : ""}`}
     >
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
@@ -294,14 +292,7 @@ const FlowerOfLifeSVG = ({
 
       <g transform="rotate(30)">
         <g opacity={opacity * 0.5} filter={`url(#${glowId})`}>
-          <circle
-            cx="0"
-            cy="0"
-            r={radius * 3}
-            fill="none"
-            stroke={color}
-            strokeWidth="2"
-          />
+          <circle cx="0" cy="0" r={radius * 3} fill="none" stroke={color} strokeWidth="2" />
           {centers.map((c, idx) => (
             <circle
               key={`blur-${idx}`}
@@ -315,23 +306,8 @@ const FlowerOfLifeSVG = ({
           ))}
         </g>
         <g opacity={opacity}>
-          <circle
-            cx="0"
-            cy="0"
-            r={radius * 3}
-            fill="none"
-            stroke={`url(#${gradientId})`}
-            strokeWidth="1"
-          />
-          <circle
-            cx="0"
-            cy="0"
-            r={radius * 3 + 2}
-            fill="none"
-            stroke="white"
-            strokeWidth="0.2"
-            opacity="0.5"
-          />
+          <circle cx="0" cy="0" r={radius * 3} fill="none" stroke={`url(#${gradientId})`} strokeWidth="1" />
+          <circle cx="0" cy="0" r={radius * 3 + 2} fill="none" stroke="white" strokeWidth="0.2" opacity="0.5" />
           {centers.map((c, idx) => (
             <circle
               key={idx}
@@ -342,23 +318,12 @@ const FlowerOfLifeSVG = ({
               fillOpacity="0.03"
               stroke={`url(#${gradientId})`}
               strokeWidth="0.8"
-              style={
-                animate
-                  ? { animation: `pulse 4s infinite ease-in-out ${idx * 0.1}s` }
-                  : {}
-              }
+              style={animate ? { animation: `pulse 4s infinite ease-in-out ${idx * 0.1}s` } : {}}
             />
           ))}
         </g>
         {animate && (
-          <circle
-            cx="0"
-            cy="0"
-            r={radius * 2}
-            fill={`url(#${gradientId})`}
-            opacity="0.1"
-            className="animate-pulse"
-          />
+          <circle cx="0" cy="0" r={radius * 2} fill={`url(#${gradientId})`} opacity="0.1" className="animate-pulse" />
         )}
       </g>
     </svg>
