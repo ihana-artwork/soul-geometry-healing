@@ -367,7 +367,7 @@ const FlowerOfLifeSVG = ({
 
 // --- 主程式元件 ---
 export default function App() {
-  const [view, setView] = useState("landing");
+  const [view, setView] = useState("start");
   const [nickname, setNickname] = useState("");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -429,7 +429,7 @@ export default function App() {
     setAnswers({});
     setResult(null);
     setActiveColor("#818cf8");
-    setView("landing");
+    setView("start");
   };
 
   // PDF 下載列印 (桌面端使用)
