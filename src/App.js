@@ -665,10 +665,6 @@ export default function App() {
                   <div className="text-center p-8">沒有預覽可顯示</div>
                 )}
               </div>
-                  <span className="text-lg tracking-wide">{opt.label}</span>
-                  <div className="w-4 h-4 rounded-full border border-slate-500 group-hover:bg-white/90 group-hover:border-transparent transition-all" />
-                </button>
-              ))}
             </div>
           </div>
         )}
