@@ -115,125 +115,125 @@ const QUESTIONS = [
 
 // --- 資料設定：結果分析 ---
 const RESULTS_DATA = {
-  Wood: {
-    element: "木",
-    chakra: "心輪/肝膽",
-    color: "#10B981",
-    colorName: "翠綠色",
-    oil: "佛手柑、羅馬洋甘菊",
-    gemstone: "綠幽靈、孔雀石、綠髮晶",
-    food: "深綠色蔬菜 (菠菜、花椰菜)、奇異果",
-    desc: "疏通滯礙，讓生命力如樹木般自然伸展",
+  Wood: { 
+    element: '木', 
+    chakra: '心輪/肝膽', 
+    color: '#10B981', 
+    colorName: '翠綠色',
+    oil: '佛手柑、羅馬洋甘菊', 
+    gemstone: '綠幽靈、孔雀石、綠髮晶',
+    food: '深綠色蔬菜 (菠菜、花椰菜)、奇異果',
+    desc: '疏通滯礙，讓生命力如樹木般自然伸展' 
   },
-  Fire: {
-    element: "火",
-    chakra: "太陽神經叢/心血管",
-    color: "#EF4444",
-    colorName: "緋紅色",
-    oil: "玫瑰、依蘭依蘭",
-    gemstone: "紅瑪瑙、石榴石、紅紋石",
-    food: "紅色食物 (紅豆、番茄、火龍果)",
-    desc: "平衡熱情，點燃內在溫暖而不灼人的光",
+  Fire: { 
+    element: '火', 
+    chakra: '太陽神經叢/心血管', 
+    color: '#EF4444', 
+    colorName: '緋紅色',
+    oil: '玫瑰、依蘭依蘭', 
+    gemstone: '紅瑪瑙、石榴石、紅紋石',
+    food: '紅色食物 (紅豆、番茄、火龍果)',
+    desc: '平衡熱情，點燃內在溫暖而不灼人的光' 
   },
-  Earth: {
-    element: "土",
-    chakra: "胃輪/脾胃",
-    color: "#F59E0B",
-    colorName: "大地黃",
-    oil: "岩蘭草、甜橙",
-    gemstone: "黃水晶、虎眼石、黃玉",
-    food: "黃色根莖類 (地瓜、南瓜、玉米)",
-    desc: "扎根大地，找回安穩與滋養的豐盛感",
+  Earth: { 
+    element: '土', 
+    chakra: '胃輪/脾胃', 
+    color: '#F59E0B', 
+    colorName: '大地黃',
+    oil: '岩蘭草、甜橙', 
+    gemstone: '黃水晶、虎眼石、黃玉',
+    food: '黃色根莖類 (地瓜、南瓜、玉米)',
+    desc: '扎根大地，找回安穩與滋養的豐盛感' 
   },
-  Metal: {
-    element: "金",
-    chakra: "喉輪/呼吸系統",
-    color: "#9CA3AF",
-    colorName: "銀白色",
-    oil: "尤加利、絲柏",
-    gemstone: "白水晶、月光石、白幽靈",
-    food: "白色食物 (山藥、百合、白蘿蔔、水梨)",
-    desc: "釐清邊界，在呼吸之間找回純粹的自己",
+  Metal: { 
+    element: '金', 
+    chakra: '喉輪/呼吸系統', 
+    color: '#9CA3AF', 
+    colorName: '銀白色',
+    oil: '尤加利、絲柏', 
+    gemstone: '白水晶、月光石、白幽靈',
+    food: '白色食物 (山藥、百合、白蘿蔔、水梨)',
+    desc: '釐清邊界，在呼吸之間找回純粹的自己' 
   },
-  Water: {
-    element: "水",
-    chakra: "海底輪/腎膀胱",
-    color: "#3B82F6",
-    colorName: "湛藍色",
-    oil: "杜松漿果、生薑",
-    gemstone: "黑曜石、藍寶石、海藍寶",
-    food: "黑色食物 (黑豆、黑木耳、藍莓、黑芝麻)",
-    desc: "流動滋養，溫柔擁抱內在的情緒河流",
+  Water: { 
+    element: '水', 
+    chakra: '海底輪/腎膀胱', 
+    color: '#3B82F6', 
+    colorName: '湛藍色',
+    oil: '杜松漿果、生薑', 
+    gemstone: '黑曜石、藍寶石、海藍寶',
+    food: '黑色食物 (黑豆、黑木耳、藍莓、黑芝麻)',
+    desc: '流動滋養，溫柔擁抱內在的情緒河流' 
   },
-  Root: {
-    element: "地",
-    chakra: "海底輪",
-    color: "#B91C1C",
-    colorName: "深紅色",
-    oil: "廣藿香、雪松",
-    gemstone: "黑碧璽、紅碧玉、煙晶",
-    food: "根莖類蔬菜、紅肉、薑黃",
-    desc: "穩固根基，連結大地母親的原始力量",
+  Root: { 
+    element: '地', 
+    chakra: '海底輪', 
+    color: '#B91C1C', 
+    colorName: '深紅色',
+    oil: '廣藿香、雪松', 
+    gemstone: '黑碧璽、紅碧玉、煙晶',
+    food: '根莖類蔬菜、紅肉、薑黃',
+    desc: '穩固根基，連結大地母親的原始力量' 
   },
-  Sacral: {
-    element: "水",
-    chakra: "臍輪",
-    color: "#EA580C",
-    colorName: "橙色",
-    oil: "茉莉、快樂鼠尾草",
-    gemstone: "太陽石、橙月光、紅兔毛",
-    food: "橙色蔬果 (柳橙、胡蘿蔔、芒果、南瓜)",
-    desc: "喚醒創造，享受生命中的喜悅與流動",
+  Sacral: { 
+    element: '水', 
+    chakra: '臍輪', 
+    color: '#EA580C', 
+    colorName: '橙色',
+    oil: '茉莉、快樂鼠尾草', 
+    gemstone: '太陽石、橙月光、紅兔毛',
+    food: '橙色蔬果 (柳橙、胡蘿蔔、芒果、南瓜)',
+    desc: '喚醒創造，享受生命中的喜悅與流動' 
   },
-  SolarPlexus: {
-    element: "火",
-    chakra: "太陽神經叢",
-    color: "#FCD34D",
-    colorName: "金黃色",
-    oil: "檸檬、黑胡椒",
-    gemstone: "鈦晶、黃玉、琥珀",
-    food: "黃色食物 (香蕉、鳳梨、糙米、燕麥)",
-    desc: "重拾自信，展現你獨一無二的光芒",
+  SolarPlexus: { 
+    element: '火', 
+    chakra: '太陽神經叢', 
+    color: '#FCD34D', 
+    colorName: '金黃色',
+    oil: '檸檬、黑胡椒', 
+    gemstone: '鈦晶、黃玉、琥珀',
+    food: '黃色食物 (香蕉、鳳梨、糙米、燕麥)',
+    desc: '重拾自信，展現你獨一無二的光芒' 
   },
-  Heart: {
-    element: "風",
-    chakra: "心輪",
-    color: "#059669",
-    colorName: "翡翠綠",
-    oil: "玫瑰天竺葵、薰衣草",
-    gemstone: "粉晶、捷克隕石、綠松石",
-    food: "綠色蔬果 (酪梨、綠豆、綠茶、芭樂)",
-    desc: "敞開心扉，在愛與被愛中獲得療癒",
+  Heart: { 
+    element: '風', 
+    chakra: '心輪', 
+    color: '#059669', 
+    colorName: '翡翠綠',
+    oil: '玫瑰天竺葵、薰衣草', 
+    gemstone: '粉晶、捷克隕石、綠松石',
+    food: '綠色蔬果 (酪梨、綠豆、綠茶、芭樂)',
+    desc: '敞開心扉，在愛與被愛中獲得療癒' 
   },
-  Throat: {
-    element: "空",
-    chakra: "喉輪",
-    color: "#60A5FA",
-    colorName: "天藍色",
-    oil: "德國洋甘菊、薄荷",
-    gemstone: "藍紋瑪瑙、天河石、青金石",
-    food: "潤喉食物 (蜂蜜、檸檬水、楊桃、枇杷)",
-    desc: "真實表達，讓聲音成為連結世界的橋樑",
+  Throat: { 
+    element: '空', 
+    chakra: '喉輪', 
+    color: '#60A5FA', 
+    colorName: '天藍色',
+    oil: '德國洋甘菊、薄荷', 
+    gemstone: '藍紋瑪瑙、天河石、青金石',
+    food: '潤喉食物 (蜂蜜、檸檬水、楊桃、枇杷)',
+    desc: '真實表達，讓聲音成為連結世界的橋樑' 
   },
-  ThirdEye: {
-    element: "光",
-    chakra: "眉心輪",
-    color: "#4F46E5",
-    colorName: "靛藍色",
-    oil: "迷迭香、乳香",
-    gemstone: "青金石、藍銅礦、紫螢石",
-    food: "藍紫色食物 (藍莓、葡萄、紫甘藍)",
-    desc: "洞見真實，喚醒內在深處的直覺智慧",
+  ThirdEye: { 
+    element: '光', 
+    chakra: '眉心輪', 
+    color: '#4F46E5', 
+    colorName: '靛藍色',
+    oil: '迷迭香、乳香', 
+    gemstone: '青金石、藍銅礦、紫螢石',
+    food: '藍紫色食物 (藍莓、葡萄、紫甘藍)',
+    desc: '洞見真實，喚醒內在深處的直覺智慧' 
   },
-  Crown: {
-    element: "靈",
-    chakra: "頂輪",
-    color: "#7C3AED",
-    colorName: "紫色",
-    oil: "乳香、沒藥、蓮花",
-    gemstone: "紫水晶、舒俱來、白水晶",
-    food: "紫色食物 (茄子、紫米、紫薯) 或 斷食排毒",
-    desc: "靈性合一，感受宇宙無條件的愛與祝福",
+  Crown: { 
+    element: '靈', 
+    chakra: '頂輪', 
+    color: '#7C3AED', 
+    colorName: '紫色',
+    oil: '乳香、沒藥、蓮花', 
+    gemstone: '紫水晶、舒俱來、白水晶',
+    food: '紫色食物 (茄子、紫米、紫薯) 或 斷食排毒',
+    desc: '靈性合一，感受宇宙無條件的愛與祝福'
   },
 };
 
@@ -562,75 +562,60 @@ export default function App() {
 
       {/* 主要內容 */}
       <div className="relative z-10 container mx-auto px-4 py-8 min-h-screen flex flex-col items-center justify-center">
-        {/* Landing Page */}
-        {view === "landing" && (
-          <div className="max-w-md w-full bg-slate-900/40 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-2xl animate-fade-in text-center">
-            <div className="mb-6 flex justify-center">
-              <div className="relative w-24 h-24">
-                <FlowerOfLifeSVG color="#c084fc" opacity={1} uniqueId="logo" />
-                <Sparkles
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]"
-                  size={32}
-                />
-              </div>
+        <>
+          {/* 首頁/開始頁 */}
+          {view === "start" && (
+            <div className="max-w-xl w-full bg-slate-900/70 backdrop-blur-lg p-8 rounded-3xl border border-white/10 shadow-2xl animate-fade-in flex flex-col items-center">
+              <h2 className="text-lg text-purple-300/80 mb-6 font-light tracking-widest">SOUL GEOMETRY</h2>
+              <p className="text-slate-300 mb-8 font-light leading-relaxed">
+                透過五行脈輪檢測，連結您的內在頻率<br />
+                獲取專屬的<b>「生命之花祝福圖騰」</b><br />與 <b>3ml 調配精油</b>
+              </p>
+              <input
+                type="text"
+                placeholder="請輸入您的暱稱"
+                className="w-full bg-slate-800/50 border border-slate-600 rounded-lg px-4 py-3 mb-6 focus:outline-none focus:ring-2 focus:ring-purple-500 text-center placeholder-slate-500 transition-all text-lg"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+              />
+              <button
+                onClick={() => nickname && setView("quiz")}
+                disabled={!nickname}
+                className={`w-full py-4 rounded-lg font-medium text-lg transition-all duration-300 ${
+                  nickname
+                    ? "bg-gradient-to-r from-purple-600 to-indigo-600 hover:shadow-[0_0_20px_rgba(124,58,237,0.5)] text-white transform hover:-translate-y-0.5"
+                    : "bg-slate-700 text-slate-500 cursor-not-allowed"
+                }`}
+              >
+                開始能量檢測
+              </button>
             </div>
-            <h1 className="text-4xl font-serif font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-200 via-pink-200 to-indigo-200 mb-2 tracking-wide">
-              靈魂幾何
-            </h1>
-            <h2 className="text-lg text-purple-300/80 mb-6 font-light tracking-widest">
-              SOUL GEOMETRY
-            </h2>
-            <p className="text-slate-300 mb-8 font-light leading-relaxed">
-              透過五行脈輪檢測，連結您的內在頻率
-              <br />
-              獲取專屬的<b>「生命之花祝福圖騰」</b>
-              <br />與 <b>3ml 調配精油</b>
-            </p>
-            <input
-              type="text"
-              placeholder="請輸入您的暱稱"
-              className="w-full bg-slate-800/50 border border-slate-600 rounded-lg px-4 py-3 mb-6 focus:outline-none focus:ring-2 focus:ring-purple-500 text-center placeholder-slate-500 transition-all text-lg"
-              value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
-            />
-            <button
-              onClick={() => nickname && setView("quiz")}
-              disabled={!nickname}
-              className={`w-full py-4 rounded-lg font-medium text-lg transition-all duration-300 ${
-                nickname
-                  ? "bg-gradient-to-r from-purple-600 to-indigo-600 hover:shadow-[0_0_20px_rgba(124,58,237,0.5)] text-white transform hover:-translate-y-0.5"
-                  : "bg-slate-700 text-slate-500 cursor-not-allowed"
-              }`}
-            >
-              開始能量檢測
-            </button>
-          </div>
-        )}
+          )}
 
-        {/* Quiz Page */}
-        {view === "quiz" && (
-          <div className="max-w-2xl w-full bg-slate-900/70 backdrop-blur-lg p-8 rounded-3xl border border-white/10 shadow-2xl animate-fade-in">
-            <div className="mb-8">
-              <div className="flex justify-between text-sm text-slate-400 mb-2 font-mono">
-                <span>PROGRESS</span>
-                <span>
-                  {currentQuestion + 1} / {QUESTIONS.length}
-                </span>
+          {/* Quiz Page */}
+          {view === "quiz" && (
+            <div className="max-w-2xl w-full bg-slate-900/70 backdrop-blur-lg p-8 rounded-3xl border border-white/10 shadow-2xl animate-fade-in">
+              <div className="mb-8">
+                <div className="flex justify-between text-sm text-slate-400 mb-2 font-mono">
+                  <span>PROGRESS</span>
+                  <span>
+                    {currentQuestion + 1} / {QUESTIONS.length}
+                  </span>
+                </div>
+                <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-purple-500 to-indigo-500 transition-all duration-500 ease-out shadow-[0_0_10px_rgba(168,85,247,0.5)]"
+                    style={{
+                      width: `${((currentQuestion + 1) / QUESTIONS.length) * 100}%`,
+                    }}
+                  />
+                </div>
               </div>
-              <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-gradient-to-r from-purple-500 to-indigo-500 transition-all duration-500 ease-out shadow-[0_0_10px_rgba(168,85,247,0.5)]"
-                  style={{
-                    width: `${
-                      ((currentQuestion + 1) / QUESTIONS.length) * 100
-                    }%`,
-                  }}
-                ></div>
-              </div>
-            </div>
-            <h2 className="text-2xl md:text-3xl font-serif text-center mb-12 min-h-[100px] flex items-center justify-center leading-relaxed">
-              {QUESTIONS[currentQuestion].text}
-            </h2>
+
+              <h2 className="text-2xl md:text-3xl font-serif text-center mb-12 min-h-[100px] flex items-center justify-center leading-relaxed">
+                {QUESTIONS[currentQuestion].text}
+              </h2>
+
               <div className="p-4 flex items-center justify-center">
                 {isGeneratingPdf ? (
                   <div className="text-center p-8">正在產生預覽...</div>
@@ -649,8 +634,7 @@ export default function App() {
                 )}
               </div>
             </div>
-          </div>
-        )}
+          )}
 
         {/* Analyzing Page */}
         {view === "analyzing" && (
@@ -933,71 +917,37 @@ export default function App() {
 
         {/* Booking Page */}
         {view === "booking" && (
-          <div className="max-w-xl w-full bg-slate-900/80 backdrop-blur-xl p-8 rounded-3xl border border-white/10 shadow-2xl animate-fade-in">
-            <button
-              onClick={() => setView("result")}
-              className="text-slate-400 hover:text-white mb-6 flex items-center gap-2 transition-colors"
-            >
-              <span className="text-xl">&larr;</span> 返回報告
-            </button>
-            <h2 className="text-3xl font-serif mb-2 text-white">
-              預約專屬療癒服務
-            </h2>
-            <p className="text-slate-400 mb-8">
-              確認您的直覺繪畫與精油寄送資訊
-            </p>
+          <div className="max-w-2xl w-full bg-slate-900/70 backdrop-blur-lg p-8 rounded-3xl border border-white/10 shadow-2xl animate-fade-in">
+            <h2 className="text-2xl md:text-3xl font-serif text-center mb-6">預約服務</h2>
+
+            <div className="bg-purple-500/10 border border-purple-500/20 p-5 rounded-xl flex items-center gap-4 mb-6">
+              <div className="w-20 h-20 bg-slate-900/50 rounded-lg flex items-center justify-center overflow-hidden border border-purple-500/30">
+                <img
+                  src={productImageSrc}
+                  alt="產品縮圖"
+                  className="w-full h-full object-cover opacity-80"
+                  onError={(e) => { e.target.src = "https://placehold.co/100x100/334155/cbd5e1?text=Img"; }}
+                />
+              </div>
+              <div>
+                <h3 className="font-bold text-purple-100">直覺繪畫生命之花祝福圖騰 + 報告解析</h3>
+                <p className="text-sm text-purple-300">+ 贈送 3ml 專屬調配精油 (實體包裹)</p>
+                <p className="text-lg font-bold text-white mt-1">NT$ 1,588</p>
+              </div>
+            </div>
 
             <form onSubmit={handleBookingSubmit} className="space-y-6">
-              <div className="bg-purple-500/10 border border-purple-500/20 p-5 rounded-xl flex items-center gap-4">
-                <div className="w-20 h-20 bg-slate-900/50 rounded-lg flex items-center justify-center overflow-hidden border border-purple-500/30">
-                  <img
-                    src={productImageSrc}
-                    alt="產品縮圖"
-                    className="w-full h-full object-cover opacity-80"
-                    onError={(e) => {
-                      e.target.src =
-                        "https://placehold.co/100x100/334155/cbd5e1?text=Img";
-                    }}
-                  />
-                </div>
-                <div>
-                  <h3 className="font-bold text-purple-100">
-                    直覺繪畫生命之花祝福圖騰 + 報告解析
-                  </h3>
-                  <p className="text-sm text-purple-300">
-                    + 贈送 3ml 專屬調配精油 (實體包裹)
-                  </p>
-                  <p className="text-lg font-bold text-white mt-1">NT$ 1,588</p>
-                </div>
-              </div>
-
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-                    預約日期
-                  </label>
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">預約日期</label>
                   <div className="relative">
-                    <Calendar
-                      className="absolute left-3 top-3 text-slate-500"
-                      size={18}
-                    />
-                    <input
-                      type="date"
-                      required
-                      className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-10 pr-4 py-3 focus:ring-2 focus:ring-purple-500 outline-none text-white placeholder-slate-500"
-                      onChange={(e) => setBookingDate(e.target.value)}
-                    />
+                    <Calendar className="absolute left-3 top-3 text-slate-500" size={18} />
+                    <input type="date" required className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-10 pr-4 py-3 focus:ring-2 focus:ring-purple-500 outline-none text-white placeholder-slate-500" onChange={(e) => setBookingDate(e.target.value)} />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-                    時段
-                  </label>
-                  <select
-                    required
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 outline-none appearance-none text-white"
-                    onChange={(e) => setBookingTime(e.target.value)}
-                  >
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">時段</label>
+                  <select required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 outline-none appearance-none text-white" onChange={(e) => setBookingTime(e.target.value)}>
                     <option value="">請選擇</option>
                     <option>10:00 - 11:30</option>
                     <option>13:30 - 15:00</option>
@@ -1009,56 +959,27 @@ export default function App() {
 
               <div className="space-y-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-                    收件人姓名
-                  </label>
-                  <input
-                    type="text"
-                    defaultValue={nickname}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white"
-                  />
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">收件人姓名</label>
+                  <input type="text" defaultValue={nickname} className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white" />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-                    聯絡信箱
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="用於接收回覆與通知"
-                    required
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">聯絡信箱</label>
+                  <input type="email" placeholder="用於接收回覆與通知" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-                    收件地址 (寄送實體包裹)
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="請輸入完整收件地址"
-                    required
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                  />
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">收件地址 (寄送實體包裹)</label>
+                  <input type="text" placeholder="請輸入完整收件地址" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white" value={address} onChange={(e) => setAddress(e.target.value)} />
                 </div>
               </div>
 
-              <button
-                type="submit"
-                className="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] rounded-xl transition-all font-bold text-white flex items-center justify-center gap-2 mt-4"
-              >
-                <Mail size={20} />
-                確認預約 (NT$ 1,588)
+              <button type="submit" className="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] rounded-xl transition-all font-bold text-white flex items-center justify-center gap-2 mt-4">
+                <Mail size={20} /> 確認預約 (NT$ 1,588)
               </button>
-              <p className="text-center text-xs text-slate-500">
-                點擊後將自動開啟您的郵件軟體，請按下「傳送」以完成預約。
-              </p>
+              <p className="text-center text-xs text-slate-500">點擊後將自動開啟您的郵件軟體，請按下「傳送」以完成預約。</p>
             </form>
           </div>
         )}
+        </>
       </div>
 
       <style>{`
