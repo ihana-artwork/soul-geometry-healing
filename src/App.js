@@ -635,32 +635,15 @@ export default function App() {
                 {isGeneratingPdf ? (
                   <div className="text-center p-8">正在產生預覽...</div>
                 ) : previewDataUrl ? (
-                  (() => {
-                    try {
-                      const a4Ratio = 210 / 297; // width / height
-                      const maxViewportWidth = Math.min(window.innerWidth * 0.95, window.innerHeight * 0.9 * a4Ratio);
-                      const boxWidth = Math.floor(maxViewportWidth);
-                      const boxHeight = Math.floor(boxWidth / a4Ratio);
-                      return (
-                        <div style={{ width: boxWidth + 'px', height: boxHeight + 'px', margin: '0 auto', boxShadow: '0 4px 20px rgba(0,0,0,0.2)', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                          <img
-                            src={previewDataUrl}
-                            alt="報告預覽"
-                            style={{
-                              maxWidth: '100%',
-                              maxHeight: '100%',
-                              width: '100%',
-                              height: '100%',
-                              objectFit: 'contain',
-                              display: 'block',
-                            }}
-                          />
-                        </div>
-                      );
-                    } catch (e) {
-                      return <div className="text-center p-8">預覽顯示失敗</div>;
-                    }
-                  })()
+                  <div style={{ width: '100%', textAlign: 'center' }}>
+                    <div style={{ maxWidth: '90%', margin: '0 auto', boxShadow: '0 4px 20px rgba(0,0,0,0.2)', background: '#fff' }}>
+                      <img
+                        src={previewDataUrl}
+                        alt="報告預覽"
+                        style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
+                      />
+                    </div>
+                  </div>
                 ) : (
                   <div className="text-center p-8">沒有預覽可顯示</div>
                 )}
