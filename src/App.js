@@ -15,6 +15,7 @@ import {
   Mail,
   Download,
 } from "lucide-react";
+// html2canvas / jsPDF 已在上方匯入一次
 
 /**
  * 靈魂幾何：五行脈輪療癒所 v2.8 (CodeSandbox 版本)
@@ -378,6 +379,10 @@ export default function App() {
   const [bookingTime, setBookingTime] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
+  // PDF preview / download state
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewDataUrl, setPreviewDataUrl] = useState(null);
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
   // 圖片設定 (請上傳 01.jpg 到 public 資料夾)
   const productImageSrc = "/01.jpg";
@@ -428,84 +433,57 @@ export default function App() {
   };
 
   // PDF 下載列印 (桌面端使用)
-  const handlePrint = () => {
-    const confirmPrint = window.confirm(
-      "即將開啟列印視窗。\n請在目的地選擇「另存為 PDF」即可下載報告。\n\n是否繼續？"
-    );
-    if (confirmPrint) {
-      setTimeout(() => {
-        window.print();
-      }, 300);
+  // 產生 PDF 預覽並提供下載（使用 html2canvas + jsPDF）
+  const generatePdfPreview = async () => {
+    const el = document.getElementById("print-area");
+    if (!el) {
+      alert("找不到報告內容，無法產生 PDF。");
+      return;
     }
-  };
-
-  // 手機PDF下載功能
-  const handleDownloadPDF = async () => {
     try {
-      // 顯示下載中提示
-      const originalText = event.target.innerHTML;
-      event.target.innerHTML = '<span class="flex items-center justify-center gap-2"><Activity class="animate-spin" size={20} /> 生成PDF中...</span>';
-      event.target.disabled = true;
-
-      // 獲取報告區域
-      const reportElement = document.getElementById('print-area');
-      
-      if (!reportElement) {
-        throw new Error('找不到報告區域');
-      }
-
-      // 使用html2canvas將DOM轉換為canvas
-      const canvas = await html2canvas(reportElement, {
-        scale: 2, // 提高清晰度
-        useCORS: true, // 允許跨域圖片
-        allowTaint: true,
-        logging: false,
-        backgroundColor: '#ffffff'
-      });
-
-      // 獲取canvas的尺寸
-      const imgData = canvas.toDataURL('image/png');
-      const imgWidth = 210; // A4寬度(mm)
-      const pageHeight = 295; // A4高度(mm)
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
-
-      // 創建jsPDF實例
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      let position = 0;
-
-      // 將圖片添加到PDF
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      // 如果內容超過一頁，添加新頁面
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-
-      // 生成檔案名稱
-      const fileName = `靈魂幾何報告_${nickname}_${new Date().toLocaleDateString()}.pdf`;
-      
-      // 下載PDF
-      pdf.save(fileName);
-
-      // 恢復按鈕狀態
-      event.target.innerHTML = originalText;
-      event.target.disabled = false;
-
-      alert('PDF下載完成！');
-    } catch (error) {
-      console.error('PDF下載失敗:', error);
-      alert('PDF下載失敗，請使用列印功能或稍後再試。');
-      
-      // 恢復按鈕狀態
-      event.target.innerHTML = originalText;
-      event.target.disabled = false;
+      setIsGeneratingPdf(true);
+      const canvas = await html2canvas(el, { scale: 2, useCORS: true });
+      const dataUrl = canvas.toDataURL("image/png");
+      setPreviewDataUrl(dataUrl);
+      setPreviewOpen(true);
+    } catch (err) {
+      console.error(err);
+      alert("產生預覽失敗，請稍後再試。");
+    } finally {
+      setIsGeneratingPdf(false);
     }
   };
+
+  const downloadPdf = async (fileName = "soul-geometry-report.pdf") => {
+    try {
+      let dataUrl = previewDataUrl;
+      if (!dataUrl) {
+        const el = document.getElementById("print-area");
+        if (!el) {
+          alert("找不到報告內容，無法下載。");
+          return;
+        }
+        setIsGeneratingPdf(true);
+        const canvas = await html2canvas(el, { scale: 2, useCORS: true });
+        dataUrl = canvas.toDataURL("image/png");
+        setPreviewDataUrl(dataUrl);
+      }
+
+      const pdf = new jsPDF({ unit: "pt", format: "a4" });
+      const imgProps = pdf.getImageProperties(dataUrl);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save(fileName);
+    } catch (err) {
+      console.error(err);
+      alert("下載 PDF 時發生錯誤。");
+    } finally {
+      setIsGeneratingPdf(false);
+    }
+  };
+
+  // 手機下載交由 generatePdfPreview / downloadPdf 共用處理
 
   // 處理預約與發送 Email
   const handleBookingSubmit = (e) => {
@@ -679,7 +657,7 @@ export default function App() {
 
         {/* Analyzing Page */}
         {view === "analyzing" && (
-          <div className="text-center animate-pulse flex flex-col items-center">
+          <div className="text-center flex flex-col items-center">
             <div className="w-48 h-48 mb-8 relative">
               <div className="absolute inset-0 animate-[spin_10s_linear_infinite]">
                 <FlowerOfLifeSVG
@@ -887,29 +865,11 @@ export default function App() {
                 重新檢測
               </button>
               <button
-                onClick={(e) => {
-                  // 檢測是否為移動設備
-                  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-                  
-                  if (isMobile) {
-                    handleDownloadPDF(e);
-                  } else {
-                    handlePrint();
-                  }
-                }}
+                onClick={() => generatePdfPreview()}
                 className="flex-1 py-4 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl transition-all flex items-center justify-center gap-2 group border border-slate-700"
               >
-                {/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? (
-                  <>
-                    <Download size={20} className="group-hover:scale-110 transition-transform" />
-                    手機下載PDF
-                  </>
-                ) : (
-                  <>
-                    <Printer size={20} className="group-hover:scale-110 transition-transform" />
-                    下載報告 (PDF)
-                  </>
-                )}
+                <Printer size={20} className="group-hover:scale-110 transition-transform" />
+                下載報告 (PDF)
               </button>
               <button
                 onClick={() => setView("booking")}
@@ -921,13 +881,41 @@ export default function App() {
             </div>
             <div className="text-slate-500 text-sm print:hidden mb-8 flex items-center justify-center gap-2 bg-slate-900/50 p-2 rounded-lg border border-slate-800">
               <Info size={16} className="text-blue-400" />
-              <span>
-                {/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? (
-                  <>點擊「手機下載PDF」即可直接下載報告到您的設備。</>
+              <span>點擊「下載報告」後，會開啟報告預覽並提供下載按鈕。</span>
+            </div>
+          </div>
+        )}
+
+        {/* PDF 預覽 Modal */}
+        {previewOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+            <div className="bg-white text-slate-900 rounded-lg w-full max-w-3xl overflow-auto">
+              <div className="flex justify-between items-center p-4 border-b">
+                <h3 className="font-bold">報告預覽</h3>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => downloadPdf()}
+                    className="px-3 py-2 bg-purple-600 text-white rounded"
+                  >
+                    下載 PDF
+                  </button>
+                  <button
+                    onClick={() => setPreviewOpen(false)}
+                    className="px-3 py-2 border rounded"
+                  >
+                    關閉
+                  </button>
+                </div>
+              </div>
+              <div className="p-4">
+                {isGeneratingPdf ? (
+                  <div className="text-center p-8">正在產生預覽...</div>
+                ) : previewDataUrl ? (
+                  <img src={previewDataUrl} alt="報告預覽" className="w-full h-auto" />
                 ) : (
-                  <>點擊「下載報告」後，請在列印視窗的目的地選擇<strong>「另存為 PDF」</strong>即可儲存。</>
+                  <div className="text-center p-8">沒有預覽可顯示</div>
                 )}
-              </span>
+              </div>
             </div>
           </div>
         )}
