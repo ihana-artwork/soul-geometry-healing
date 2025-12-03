@@ -2,33 +2,32 @@ import React, { useState } from "react";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import {
-  Sparkles,
-  Droplets,
-  Activity,
-  Calendar,
-  CreditCard,
-  Check,
-  Printer,
-  RotateCcw,
-  Package,
-  Info,
-  Mail,
-  Download,
-} from "lucide-react";
-// html2canvas / jsPDF 已在上方匯入一次
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-purple-500 selection:text-white relative overflow-x-hidden">
+      {/* 動態背景層 */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-950/50 via-slate-950 to-black" />
+        <div className="absolute inset-0 opacity-40">
+          {[...Array(30)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute bg-white rounded-full animate-pulse"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                width: Math.random() > 0.5 ? "2px" : "3px",
+                height: Math.random() > 0.5 ? "2px" : "3px",
+                animationDuration: `${2 + Math.random() * 3}s`,
+              }}
+            />
+          ))}
+        </div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vh] h-[120vh] opacity-10 blur-sm">
+          <FlowerOfLifeSVG color={activeColor} opacity={0.5} animate={true} uniqueId="bg" />
+        </div>
+      </div>
 
-/**
- * 靈魂幾何：五行脈輪療癒所 v2.8 (CodeSandbox 版本)
- * * * 必要的 CodeSandbox 設定：
- * 1. 請在左側 Dependencies 安裝 'lucide-react'
- * 2. 請在 public/index.html 加入 <script src="https://cdn.tailwindcss.com"></script>
- * 3. 請將產品圖命名為 '01.jpg' 並上傳至 public 資料夾
- */
-
-// --- 資料設定：問卷題目 (20題) ---
-const QUESTIONS = [
-  {
-    id: 1,
+      {/* 主要內容 */}
     category: "Wood",
     text: "最近是否容易感到眼睛乾澀，或情緒容易煩躁易怒？",
   },
