@@ -472,8 +472,15 @@ export default function App() {
       const pdf = new jsPDF({ unit: "pt", format: "a4" });
       const imgProps = pdf.getImageProperties(dataUrl);
       const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+
+      // Scale image to fit within single A4 page while preserving aspect ratio
+      const scale = Math.min(pdfWidth / imgProps.width, pdfHeight / imgProps.height);
+      const renderW = imgProps.width * scale;
+      const renderH = imgProps.height * scale;
+      const x = (pdfWidth - renderW) / 2;
+      const y = (pdfHeight - renderH) / 2;
+      pdf.addImage(dataUrl, "PNG", x, y, renderW, renderH);
       pdf.save(fileName);
     } catch (err) {
       console.error(err);
@@ -624,29 +631,40 @@ export default function App() {
             <h2 className="text-2xl md:text-3xl font-serif text-center mb-12 min-h-[100px] flex items-center justify-center leading-relaxed">
               {QUESTIONS[currentQuestion].text}
             </h2>
-            <div className="space-y-3">
-              {[
-                {
-                  label: "非常符合",
-                  score: 5,
-                  bg: "hover:bg-purple-600/20 hover:border-purple-500",
-                },
-                {
-                  label: "部分符合",
-                  score: 3,
-                  bg: "hover:bg-indigo-600/20 hover:border-indigo-500",
-                },
-                {
-                  label: "不太符合",
-                  score: 1,
-                  bg: "hover:bg-slate-600/20 hover:border-slate-500",
-                },
-              ].map((opt) => (
-                <button
-                  key={opt.score}
-                  onClick={() => handleAnswer(opt.score)}
-                  className={`w-full p-5 rounded-xl border border-slate-700/50 bg-slate-800/30 transition-all flex items-center justify-between group ${opt.bg}`}
-                >
+              <div className="p-4 flex items-center justify-center">
+                {isGeneratingPdf ? (
+                  <div className="text-center p-8">正在產生預覽...</div>
+                ) : previewDataUrl ? (
+                  (() => {
+                    try {
+                      const a4Ratio = 210 / 297; // width / height
+                      const maxViewportWidth = Math.min(window.innerWidth * 0.95, window.innerHeight * 0.9 * a4Ratio);
+                      const boxWidth = Math.floor(maxViewportWidth);
+                      const boxHeight = Math.floor(boxWidth / a4Ratio);
+                      return (
+                        <div style={{ width: boxWidth + 'px', height: boxHeight + 'px', margin: '0 auto', boxShadow: '0 4px 20px rgba(0,0,0,0.2)', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <img
+                            src={previewDataUrl}
+                            alt="報告預覽"
+                            style={{
+                              maxWidth: '100%',
+                              maxHeight: '100%',
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'contain',
+                              display: 'block',
+                            }}
+                          />
+                        </div>
+                      );
+                    } catch (e) {
+                      return <div className="text-center p-8">預覽顯示失敗</div>;
+                    }
+                  })()
+                ) : (
+                  <div className="text-center p-8">沒有預覽可顯示</div>
+                )}
+              </div>
                   <span className="text-lg tracking-wide">{opt.label}</span>
                   <div className="w-4 h-4 rounded-full border border-slate-500 group-hover:bg-white/90 group-hover:border-transparent transition-all" />
                 </button>
@@ -907,11 +925,25 @@ export default function App() {
                   </button>
                 </div>
               </div>
-              <div className="p-4">
+              <div className="p-4 flex items-center justify-center">
                 {isGeneratingPdf ? (
                   <div className="text-center p-8">正在產生預覽...</div>
                 ) : previewDataUrl ? (
-                  <img src={previewDataUrl} alt="報告預覽" className="w-full h-auto" />
+                  <div style={{ width: '100%', textAlign: 'center' }}>
+                    <img
+                      src={previewDataUrl}
+                      alt="報告預覽"
+                      style={{
+                        maxHeight: '75vh',
+                        maxWidth: '100%',
+                        width: 'auto',
+                        height: 'auto',
+                        display: 'block',
+                        margin: '0 auto',
+                        objectFit: 'contain',
+                      }}
+                    />
+                  </div>
                 ) : (
                   <div className="text-center p-8">沒有預覽可顯示</div>
                 )}
