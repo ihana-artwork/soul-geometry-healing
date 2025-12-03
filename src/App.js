@@ -502,10 +502,14 @@ export default function App() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-950/50 via-slate-950 to-black"></div>
         <div className="absolute inset-0 opacity-40">
           {[...Array(30)].map((_, i) => (
-              </div>
-            </div>
-          </div>
-        )}
+            <div
+              key={i}
+              className="absolute bg-white rounded-full animate-pulse"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                width: Math.random() > 0.5 ? "2px" : "3px",
+                height: Math.random() > 0.5 ? "2px" : "3px",
                 animationDuration: `${2 + Math.random() * 3}s`,
               }}
             />
